@@ -1,31 +1,30 @@
 package com.bank.account.domain.model;
 
 import com.bank.account.domain.model.enums.TransactionStatus;
-import com.bank.account.domain.model.enums.TransactionType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class Transaction {
+public class Transfer {
 
     private Long id;
-    private Long accountId;
+    private Long sourceAccountId;
+    private Long targetAccountId;
     private BigDecimal amount;
-    private TransactionType type;
     private TransactionStatus status;
     private String reference;
     private LocalDateTime createdAt;
 
-    public Transaction(Long id,
-                       Long accountId,
-                       BigDecimal amount,
-                       TransactionType type) {
+    public Transfer(Long id,
+                    Long sourceAccountId,
+                    Long targetAccountId,
+                    BigDecimal amount) {
 
         this.id = id;
-        this.accountId = accountId;
+        this.sourceAccountId = sourceAccountId;
+        this.targetAccountId = targetAccountId;
         this.amount = amount;
-        this.type = type;
         this.status = TransactionStatus.PENDING;
         this.reference = UUID.randomUUID().toString();
         this.createdAt = LocalDateTime.now();
@@ -39,14 +38,10 @@ public class Transaction {
         this.status = TransactionStatus.FAILED;
     }
 
-    public void markAsReversed() {
-        this.status = TransactionStatus.REVERSED;
-    }
-
     public Long getId() { return id; }
-    public Long getAccountId() { return accountId; }
+    public Long getSourceAccountId() { return sourceAccountId; }
+    public Long getTargetAccountId() { return targetAccountId; }
     public BigDecimal getAmount() { return amount; }
-    public TransactionType getType() { return type; }
     public TransactionStatus getStatus() { return status; }
     public String getReference() { return reference; }
     public LocalDateTime getCreatedAt() { return createdAt; }
