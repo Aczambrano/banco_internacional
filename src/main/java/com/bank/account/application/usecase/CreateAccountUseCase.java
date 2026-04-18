@@ -1,5 +1,7 @@
 package com.bank.account.application.usecase;
 
+import com.bank.account.domain.exception.BusinessException;
+import com.bank.account.domain.exception.InvalidAccountTypeException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.enums.AccountStatus;
 import com.bank.account.domain.model.enums.AccountType;
@@ -20,16 +22,21 @@ public class CreateAccountUseCase {
 
     public Account execute(Long clientId, String type) {
 
-        Account account = new Account(
-                null,
-                generateAccountNumber(),
-                clientId,
-                Enum.valueOf(AccountType.class, type),
-                BigDecimal.ZERO,
-                AccountStatus.ACTIVE
-        );
+        try {
+            Account account = new Account(
+                    null,
+                    generateAccountNumber(),
+                    clientId,
+                    AccountType.valueOf(type),
+                    BigDecimal.ZERO,
+                    AccountStatus.ACTIVE
+            );
+            return accountRepository.save(account);
 
-        return accountRepository.save(account);
+        }catch (IllegalArgumentException e) {
+            throw new InvalidAccountTypeException(type);
+        }
+
     }
 
     private String generateAccountNumber() {
