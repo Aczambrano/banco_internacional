@@ -10,5 +10,5 @@ public interface AccountRepository {
 
     Optional<Account> findByIdForUpdate(Long id);
 
-    void save(Account account);
+    Account save(Account account);
 }

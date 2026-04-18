@@ -1,7 +1,9 @@
 package com.bank.account.infrastructure.web.controller;
 
 import com.bank.account.application.dto.response.AccountResponse;
+import com.bank.account.application.dto.response.TransactionResponse;
 import com.bank.account.application.mapper.AccountMapper;
+import com.bank.account.application.mapper.TransactionMapper;
 import com.bank.account.application.usecase.*;
 import com.bank.account.infrastructure.web.dto.CreateAccountRequest;
 import com.bank.account.infrastructure.web.dto.DepositRequest;
@@ -54,21 +56,21 @@ public class AccountController {
     }
 
     @PostMapping("/{id}/deposit")
-    public ResponseEntity<Void> deposit(@PathVariable Long id,
-                                        @Valid @RequestBody DepositRequest request) {
+    public ResponseEntity<TransactionResponse> deposit(@PathVariable Long id,
+                                                       @Valid @RequestBody DepositRequest request) {
         log.info("Deposit request received: {}", request);
 
-        depositUseCase.execute(id, request.amount());
+        var transaction = depositUseCase.execute(id, request.amount());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(TransactionMapper.toResponse(transaction));
     }
 
     @PostMapping("/{id}/withdraw")
-    public ResponseEntity<Void> withdraw(@PathVariable Long id,
+    public ResponseEntity<TransactionResponse> withdraw(@PathVariable Long id,
                                          @Valid @RequestBody WithdrawRequest request) {
 
-        withdrawUseCase.execute(id, request.amount());
+        var transaction = withdrawUseCase.execute(id, request.amount());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(TransactionMapper.toResponse(transaction));
     }
 }

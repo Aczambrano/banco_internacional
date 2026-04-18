@@ -27,8 +27,8 @@ public class AccountRepositoryAdapter implements AccountRepository {
     @Override
     public Optional<Account> findByIdForUpdate(Long id) {
         try {
-            Optional<Account> acc = jpa.findByIdForUpdate(id).map(mapper::toDomain);
-            return acc;
+            return  jpa.findByIdForUpdate(id).map(mapper::toDomain);
+
         } catch (Exception e) {
             log.error("Error retrieving account with id: {}", id, e);
             throw new RuntimeException("Error retrieving account for update", e);
@@ -36,8 +36,8 @@ public class AccountRepositoryAdapter implements AccountRepository {
     }
 
     @Override
-    public void save(Account account) {
-        jpa.save(mapper.toEntity(account));
+    public Account save(Account account) {
+        return mapper.toDomain(jpa.save(mapper.toEntity(account)));
     }
 
 }

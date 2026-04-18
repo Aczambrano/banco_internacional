@@ -1,6 +1,7 @@
 package com.bank.account.application.usecase;
 
 
+import com.bank.account.application.dto.response.TransactionResponse;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.Transfer;
@@ -10,6 +11,7 @@ import com.bank.account.domain.repository.TransactionRepository;
 import com.bank.account.domain.repository.TransferRepository;
 import com.bank.account.domain.service.AccountDomainService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -30,8 +32,8 @@ public class TransferUseCase {
         this.transferRepository = transferRepository;
         this.domainService = domainService;
     }
-
-    public void execute(Long sourceId, Long targetId, BigDecimal amount) {
+    @Transactional
+    public Transfer execute(Long sourceId, Long targetId, BigDecimal amount) {
 
         Account source = accountRepository.findByIdForUpdate(sourceId)
                 .orElseThrow();
@@ -54,6 +56,6 @@ public class TransferUseCase {
         accountRepository.save(target);
         transactionRepository.save(debit);
         transactionRepository.save(credit);
-        transferRepository.save(transfer);
+        return transferRepository.save(transfer);
     }
 }

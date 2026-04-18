@@ -1,5 +1,6 @@
 package com.bank.account.application.usecase;
 
+import com.bank.account.application.dto.response.TransactionResponse;
 import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
@@ -7,6 +8,7 @@ import com.bank.account.domain.model.enums.TransactionType;
 import com.bank.account.domain.repository.AccountRepository;
 import com.bank.account.domain.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -22,7 +24,8 @@ public class DepositUseCase {
         this.transactionRepository = transactionRepository;
     }
 
-    public void execute(Long accountId, BigDecimal amount) {
+    @Transactional
+    public Transaction execute(Long accountId, BigDecimal amount) {
 
         Account account = accountRepository.findByIdForUpdate(accountId)
                 .orElseThrow(() -> new AccountNotFoundException(accountId));
@@ -39,6 +42,8 @@ public class DepositUseCase {
         tx.markAsSuccess();
 
         accountRepository.save(account);
-        transactionRepository.save(tx);
+
+
+        return transactionRepository.save(tx);
     }
 }

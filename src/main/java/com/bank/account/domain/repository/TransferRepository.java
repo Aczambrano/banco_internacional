@@ -1,8 +1,10 @@
 package com.bank.account.domain.repository;
 
+import com.bank.account.application.dto.response.TransactionResponse;
+import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.Transfer;
 
 public interface TransferRepository {
 
-    void save(Transfer transfer);
+    Transfer save(Transfer transfer);
 }

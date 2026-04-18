@@ -7,6 +7,7 @@ import com.bank.account.domain.model.enums.TransactionType;
 import com.bank.account.domain.repository.AccountRepository;
 import com.bank.account.domain.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -22,7 +23,8 @@ public class WithdrawUseCase {
         this.transactionRepository = transactionRepository;
     }
 
-    public void execute(Long accountId, BigDecimal amount) {
+    @Transactional
+    public Transaction execute(Long accountId, BigDecimal amount) {
 
         Account account = accountRepository.findByIdForUpdate(accountId)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
@@ -39,6 +41,6 @@ public class WithdrawUseCase {
         tx.markAsSuccess();
 
         accountRepository.save(account);
-        transactionRepository.save(tx);
+        return transactionRepository.save(tx);
     }
 }

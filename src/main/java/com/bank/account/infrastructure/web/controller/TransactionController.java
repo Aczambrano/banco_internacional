@@ -1,7 +1,9 @@
 package com.bank.account.infrastructure.web.controller;
 
 import com.bank.account.application.dto.response.TransactionResponse;
+import com.bank.account.application.dto.response.TransferResponse;
 import com.bank.account.application.mapper.TransactionMapper;
+import com.bank.account.application.mapper.TransferMapper;
 import com.bank.account.application.usecase.GetTransactionHistoryUseCase;
 import com.bank.account.application.usecase.TransferUseCase;
 import com.bank.account.infrastructure.web.dto.TransferRequest;
@@ -25,16 +27,16 @@ public class TransactionController {
     }
 
     @PostMapping("/transfer")
-    public ResponseEntity<Void> transfer(@Valid @RequestBody TransferRequest request) {
+    public ResponseEntity<TransferResponse> transfer(@Valid @RequestBody TransferRequest request) {
         request.validateDifferentAccounts();
 
-        transferUseCase.execute(
+        var transfer = transferUseCase.execute(
                 request.sourceAccountId(),
                 request.targetAccountId(),
                 request.amount()
         );
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(TransferMapper.fromTransfer(transfer));
     }
 
     @GetMapping("/account/{accountId}")

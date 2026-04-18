@@ -1,5 +1,6 @@
 package com.bank.account.infrastructure.persistence.adapter;
 
+import com.bank.account.application.dto.response.TransactionResponse;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.repository.TransactionRepository;
 import com.bank.account.infrastructure.persistence.entity.TransactionEntity;
@@ -19,8 +20,8 @@ public class TransactionRepositoryAdapter implements TransactionRepository {
     private final TransactionPersistenceMapper mapper;
 
     @Override
-    public void save(Transaction tx) {
-        jpa.save(toEntity(tx));
+    public Transaction save(Transaction tx) {
+        return mapper.toResponse(jpa.save(mapper.toEntity(tx)));
     }
 
     @Override
@@ -45,7 +46,6 @@ public class TransactionRepositoryAdapter implements TransactionRepository {
                 e.getType()
         );
 
-        // ⚠️ sincronizar estado y metadata
         if (e.getStatus() != null) {
             switch (e.getStatus()) {
                 case SUCCESS -> tx.markAsSuccess();
@@ -58,15 +58,4 @@ public class TransactionRepositoryAdapter implements TransactionRepository {
         return tx;
     }
 
-    private TransactionEntity toEntity(Transaction tx) {
-        TransactionEntity e = new TransactionEntity();
-        e.setId(tx.getId());
-        e.setAccountId(tx.getAccountId());
-        e.setAmount(tx.getAmount());
-        e.setType(tx.getType());
-        e.setStatus(tx.getStatus());
-        e.setReference(tx.getReference());
-        e.setCreatedAt(tx.getCreatedAt());
-        return e;
-    }
 }

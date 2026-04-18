@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TransactionRepository {
 
-    void save(Transaction transaction);
+    Transaction save(Transaction transaction);
 
     boolean existsByReference(String reference);
 

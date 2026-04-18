@@ -29,9 +29,7 @@ public class CreateAccountUseCase {
                 AccountStatus.ACTIVE
         );
 
-        accountRepository.save(account);
-
-        return account;
+        return accountRepository.save(account);
     }
 
     private String generateAccountNumber() {
