@@ -1,16 +1,17 @@
 package com.bank.account.infrastructure.persistence.adapter;
 
-import com.bank.account.application.dto.response.TransactionResponse;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.repository.TransactionRepository;
 import com.bank.account.infrastructure.persistence.entity.TransactionEntity;
 import com.bank.account.infrastructure.persistence.mapper.TransactionPersistenceMapper;
 import com.bank.account.infrastructure.persistence.repository.JpaTransactionRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
@@ -32,10 +33,11 @@ public class TransactionRepositoryAdapter implements TransactionRepository {
     @Override
     public List<Transaction> findByAccountId(Long accountId, int page, int size) {
 
-        return jpa.findByAccountIdOrderByCreatedAtDesc(accountId)
-                .stream()
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+
+        return jpa.findByAccountId(accountId, pageable)
                 .map(this::toDomain)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private Transaction toDomain(TransactionEntity e) {

@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/clients/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": 1,
+      "name": "Anderson Zambrano"
+    }
+  }
+}
