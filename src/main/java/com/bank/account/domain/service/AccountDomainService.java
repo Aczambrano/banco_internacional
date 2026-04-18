@@ -1,4 +1,4 @@
-package com.bank.account.domain.model.service;
+package com.bank.account.domain.service;
 
 import com.bank.account.domain.exception.AccountNotActiveException;
 import com.bank.account.domain.exception.InsufficientFundsException;
