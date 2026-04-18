@@ -1,10 +1,10 @@
 package com.bank.account.application.usecase;
 
-import com.bank.account.domain.exception.BusinessException;
 import com.bank.account.domain.exception.InvalidAccountTypeException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.enums.AccountStatus;
 import com.bank.account.domain.model.enums.AccountType;
+import com.bank.account.domain.model.enums.CurrencyCode;
 import com.bank.account.domain.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +29,8 @@ public class CreateAccountUseCase {
                     clientId,
                     AccountType.valueOf(type),
                     BigDecimal.ZERO,
-                    AccountStatus.ACTIVE
+                    AccountStatus.ACTIVE,
+                    CurrencyCode.USD
             );
             return accountRepository.save(account);
 

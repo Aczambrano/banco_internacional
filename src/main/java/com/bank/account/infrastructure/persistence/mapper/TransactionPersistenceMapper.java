@@ -1,17 +1,33 @@
 package com.bank.account.infrastructure.persistence.mapper;
 
-import com.bank.account.application.dto.response.TransactionResponse;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.infrastructure.persistence.entity.TransactionEntity;
-import org.mapstruct.*;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public interface TransactionPersistenceMapper {
+@Component
+public class TransactionPersistenceMapper {
 
-    TransactionEntity toEntity(Transaction domain);
+    public TransactionEntity toEntity(Transaction domain) {
+        TransactionEntity entity = new TransactionEntity();
+        entity.setId(domain.getId());
+        entity.setAccountId(domain.getAccountId());
+        entity.setAmount(domain.getAmount());
+        entity.setType(domain.getType());
+        entity.setStatus(domain.getStatus());
+        entity.setReference(domain.getReference());
+        entity.setCreatedAt(domain.getCreatedAt());
+        return entity;
+    }
 
-    TransactionResponse toResponse(Transaction domain);
-
-    Transaction toResponse(TransactionEntity domain);
-
+    public Transaction toResponse(TransactionEntity entity) {
+        return new Transaction(
+                entity.getId(),
+                entity.getAccountId(),
+                entity.getAmount(),
+                entity.getType(),
+                entity.getStatus(),
+                entity.getReference(),
+                entity.getCreatedAt()
+        );
+    }
 }

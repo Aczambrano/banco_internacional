@@ -12,7 +12,8 @@ public class AccountMapper {
                 account.getClientId(),
                 account.getType(),
                 account.getBalance(),
-                account.getStatus()
+                account.getStatus(),
+                account.getCurrency()
         );
     }
 }

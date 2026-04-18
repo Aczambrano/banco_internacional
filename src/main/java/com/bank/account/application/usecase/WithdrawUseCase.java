@@ -1,6 +1,7 @@
 package com.bank.account.application.usecase;
 
 
+import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.enums.TransactionType;
@@ -27,7 +28,7 @@ public class WithdrawUseCase {
     public Transaction execute(Long accountId, BigDecimal amount) {
 
         Account account = accountRepository.findByIdForUpdate(accountId)
-                .orElseThrow(() -> new RuntimeException("Account not found"));
+                .orElseThrow(() -> new AccountNotFoundException(accountId));
 
         account.withdraw(amount);
 

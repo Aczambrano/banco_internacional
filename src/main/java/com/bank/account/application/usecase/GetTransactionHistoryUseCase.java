@@ -1,5 +1,6 @@
 package com.bank.account.application.usecase;
 
+import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
@@ -10,12 +11,14 @@ import java.util.List;
 public class GetTransactionHistoryUseCase {
 
     private final TransactionRepository transactionRepository;
-
-    public GetTransactionHistoryUseCase(TransactionRepository transactionRepository) {
+    private final GetAccountUseCase  getAccountUseCase;
+    public GetTransactionHistoryUseCase(TransactionRepository transactionRepository, GetAccountUseCase getAccountUseCase) {
         this.transactionRepository = transactionRepository;
+        this.getAccountUseCase = getAccountUseCase;
     }
 
     public List<Transaction> execute(Long accountId, int page, int size) {
+        getAccountUseCase.execute(accountId);
         return transactionRepository.findByAccountId(accountId, page, size);
     }
 }

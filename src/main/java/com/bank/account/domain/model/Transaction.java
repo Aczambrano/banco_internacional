@@ -31,6 +31,23 @@ public class Transaction {
         this.createdAt = LocalDateTime.now();
     }
 
+    public Transaction(Long id,
+                       Long accountId,
+                       BigDecimal amount,
+                       TransactionType type,
+                       TransactionStatus status,
+                       String reference,
+                       LocalDateTime createdAt) {
+
+        this.id = id;
+        this.accountId = accountId;
+        this.amount = amount;
+        this.type = type;
+        this.status = status;
+        this.reference = reference;
+        this.createdAt = createdAt;
+    }
+
     public void markAsSuccess() {
         this.status = TransactionStatus.SUCCESS;
     }

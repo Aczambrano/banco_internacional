@@ -4,6 +4,7 @@ import com.bank.account.domain.exception.AccountNotActiveException;
 import com.bank.account.domain.exception.InsufficientFundsException;
 import com.bank.account.domain.model.enums.AccountStatus;
 import com.bank.account.domain.model.enums.AccountType;
+import com.bank.account.domain.model.enums.CurrencyCode;
 
 import java.math.BigDecimal;
 
@@ -15,13 +16,15 @@ public class Account {
     private AccountType type;
     private BigDecimal balance;
     private AccountStatus status;
+    private CurrencyCode currency;
 
     public Account(Long id,
                    String accountNumber,
                    Long clientId,
                    AccountType type,
                    BigDecimal balance,
-                   AccountStatus status) {
+                   AccountStatus status,
+                   CurrencyCode currency) {
 
         this.id = id;
         this.accountNumber = accountNumber;
@@ -29,6 +32,7 @@ public class Account {
         this.type = type;
         this.balance = balance != null ? balance : BigDecimal.ZERO;
         this.status = status;
+        this.currency = currency;
     }
 
     public void deposit(BigDecimal amount) {
@@ -70,4 +74,5 @@ public class Account {
     public AccountType getType() { return type; }
     public BigDecimal getBalance() { return balance; }
     public AccountStatus getStatus() { return status; }
+    public CurrencyCode getCurrency() { return currency; }
 }

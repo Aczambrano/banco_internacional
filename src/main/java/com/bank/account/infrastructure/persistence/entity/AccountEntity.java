@@ -2,6 +2,7 @@ package com.bank.account.infrastructure.persistence.entity;
 
 import com.bank.account.domain.model.enums.AccountStatus;
 import com.bank.account.domain.model.enums.AccountType;
+import com.bank.account.domain.model.enums.CurrencyCode;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,6 +36,10 @@ public class AccountEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
     private AccountStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "currency", nullable = false, length = 20)
+    private CurrencyCode currency;
 
     @Column(name = "created_at", updatable = false, insertable = false)
     private LocalDateTime createdAt;

@@ -11,5 +11,6 @@ public interface AccountPersistenceMapper {
     Account toDomain(AccountEntity entity);
 
     @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "currency", source = "currency")
     AccountEntity toEntity(Account domain);
 }

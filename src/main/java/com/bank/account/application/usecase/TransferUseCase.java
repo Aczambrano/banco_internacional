@@ -2,6 +2,7 @@ package com.bank.account.application.usecase;
 
 
 import com.bank.account.application.dto.response.TransactionResponse;
+import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.Transfer;
@@ -36,10 +37,10 @@ public class TransferUseCase {
     public Transfer execute(Long sourceId, Long targetId, BigDecimal amount) {
 
         Account source = accountRepository.findByIdForUpdate(sourceId)
-                .orElseThrow();
+                .orElseThrow(() -> new AccountNotFoundException(sourceId));
 
         Account target = accountRepository.findByIdForUpdate(targetId)
-                .orElseThrow();
+                .orElseThrow(() -> new AccountNotFoundException(targetId));
 
         domainService.transfer(source, target, amount);
 
