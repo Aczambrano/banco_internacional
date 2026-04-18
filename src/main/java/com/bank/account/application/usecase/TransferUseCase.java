@@ -1,14 +1,15 @@
 package com.bank.account.application.usecase;
 
 
+import com.bank.account.application.port.in.TransferPort;
 import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.Transfer;
 import com.bank.account.domain.model.enums.TransactionType;
-import com.bank.account.domain.port.output.AccountRepository;
-import com.bank.account.domain.port.output.TransactionRepository;
-import com.bank.account.domain.port.output.TransferRepository;
+import com.bank.account.application.port.out.AccountRepository;
+import com.bank.account.application.port.out.TransactionRepository;
+import com.bank.account.application.port.out.TransferRepository;
 import com.bank.account.domain.service.AccountDomainService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 
 @Service
-public class TransferUseCase {
+public class TransferUseCase implements TransferPort {
 
     private final AccountRepository accountRepository;
     private final TransactionRepository transactionRepository;
@@ -32,6 +33,8 @@ public class TransferUseCase {
         this.transferRepository = transferRepository;
         this.domainService = domainService;
     }
+
+    @Override
     @Transactional
     public Transfer execute(Long sourceId, Long targetId, BigDecimal amount) {
 

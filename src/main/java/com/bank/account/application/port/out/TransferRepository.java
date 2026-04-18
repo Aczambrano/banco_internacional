@@ -1,4 +1,4 @@
-package com.bank.account.domain.port.output;
+package com.bank.account.application.port.out;
 
 import com.bank.account.domain.model.Transfer;
 

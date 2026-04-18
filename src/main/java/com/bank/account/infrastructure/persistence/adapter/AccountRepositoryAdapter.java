@@ -1,7 +1,7 @@
 package com.bank.account.infrastructure.persistence.adapter;
 
 import com.bank.account.domain.model.Account;
-import com.bank.account.domain.port.output.AccountRepository;
+import com.bank.account.application.port.out.AccountRepository;
 import com.bank.account.infrastructure.persistence.mapper.AccountPersistenceMapper;
 import com.bank.account.infrastructure.persistence.repository.JpaAccountRepository;
 import lombok.AllArgsConstructor;

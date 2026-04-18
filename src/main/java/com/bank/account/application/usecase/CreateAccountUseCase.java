@@ -1,19 +1,20 @@
 package com.bank.account.application.usecase;
 
+import com.bank.account.application.port.in.CreateAccountPort;
 import com.bank.account.domain.exception.InvalidAccountTypeException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.enums.AccountStatus;
 import com.bank.account.domain.model.enums.AccountType;
 import com.bank.account.domain.model.enums.CurrencyCode;
-import com.bank.account.domain.port.output.AccountRepository;
-import com.bank.account.domain.port.output.ClientPort;
+import com.bank.account.application.port.out.AccountRepository;
+import com.bank.account.application.port.out.ClientPort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Service
-public class CreateAccountUseCase {
+public class CreateAccountUseCase implements CreateAccountPort {
 
     private final AccountRepository accountRepository;
     private final ClientPort clientPort;
@@ -23,6 +24,7 @@ public class CreateAccountUseCase {
         this.clientPort = clientPort;
     }
 
+    @Override
     public Account execute(Long clientId, String type) {
         clientPort.validateClientExists(clientId);
 

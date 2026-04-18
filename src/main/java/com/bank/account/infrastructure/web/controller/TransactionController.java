@@ -4,6 +4,8 @@ import com.bank.account.application.dto.response.TransactionResponse;
 import com.bank.account.application.dto.response.TransferResponse;
 import com.bank.account.application.mapper.TransactionMapper;
 import com.bank.account.application.mapper.TransferMapper;
+import com.bank.account.application.port.in.GetTransactionHistoryPort;
+import com.bank.account.application.port.in.TransferPort;
 import com.bank.account.application.usecase.GetTransactionHistoryUseCase;
 import com.bank.account.application.usecase.TransferUseCase;
 import com.bank.account.infrastructure.web.dto.TransferRequest;
@@ -17,8 +19,8 @@ import java.util.List;
 @RequestMapping("/transactions")
 public class TransactionController {
 
-    private final TransferUseCase transferUseCase;
-    private final GetTransactionHistoryUseCase historyUseCase;
+    private final TransferPort transferUseCase;
+    private final GetTransactionHistoryPort historyUseCase;
 
     public TransactionController(TransferUseCase transferUseCase,
                                  GetTransactionHistoryUseCase historyUseCase) {

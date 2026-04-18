@@ -4,6 +4,10 @@ import com.bank.account.application.dto.response.AccountResponse;
 import com.bank.account.application.dto.response.TransactionResponse;
 import com.bank.account.application.mapper.AccountMapper;
 import com.bank.account.application.mapper.TransactionMapper;
+import com.bank.account.application.port.in.CreateAccountPort;
+import com.bank.account.application.port.in.DepositPort;
+import com.bank.account.application.port.in.GetAccountPort;
+import com.bank.account.application.port.in.WithdrawPort;
 import com.bank.account.application.usecase.*;
 import com.bank.account.infrastructure.web.dto.CreateAccountRequest;
 import com.bank.account.infrastructure.web.dto.DepositRequest;
@@ -19,10 +23,10 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
-    private final CreateAccountUseCase createAccountUseCase;
-    private final GetAccountUseCase getAccountUseCase;
-    private final DepositUseCase depositUseCase;
-    private final WithdrawUseCase withdrawUseCase;
+    private final CreateAccountPort createAccountUseCase;
+    private final GetAccountPort getAccountUseCase;
+    private final DepositPort depositUseCase;
+    private final WithdrawPort withdrawUseCase;
 
     public AccountController(CreateAccountUseCase createAccountUseCase,
                              GetAccountUseCase getAccountUseCase,
