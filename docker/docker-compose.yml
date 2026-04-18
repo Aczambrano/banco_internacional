@@ -1,6 +1,7 @@
 version: "3.8"
 
 services:
+
   wiremock:
     image: wiremock/wiremock:3.5.4
     container_name: wiremock-client
@@ -9,3 +10,51 @@ services:
     volumes:
       - ./wiremock:/home/wiremock
     command: "--verbose"
+    networks:
+      - microservice-network
+
+  mysql_bank_db:
+    image: mysql:8.0
+    container_name: mysql_bank_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bank_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - microservice-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 15s
+      retries: 10
+      start_period: 30s
+
+  account-microservice:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: account-microservice
+    depends_on:
+      mysql_bank_db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_bank_db:3306/bank_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      BANK_ACCOUNT_GET_CLIENT_URL: http://wiremock:8080/clients/
+    ports:
+      - "8081:8081"
+    networks:
+      - microservice-network
+
+networks:
+  microservice-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
