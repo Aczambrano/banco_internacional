@@ -1,4 +1,4 @@
-package com.bank.account.domain.repository;
+package com.bank.account.domain.port.output;
 
 import com.bank.account.domain.model.Transaction;
 

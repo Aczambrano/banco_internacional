@@ -1,8 +1,7 @@
 package com.bank.account.application.usecase;
 
-import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Transaction;
-import com.bank.account.domain.repository.TransactionRepository;
+import com.bank.account.domain.port.output.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

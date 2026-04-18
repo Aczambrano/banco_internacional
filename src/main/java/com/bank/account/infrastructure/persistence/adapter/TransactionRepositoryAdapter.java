@@ -1,7 +1,7 @@
 package com.bank.account.infrastructure.persistence.adapter;
 
 import com.bank.account.domain.model.Transaction;
-import com.bank.account.domain.repository.TransactionRepository;
+import com.bank.account.domain.port.output.TransactionRepository;
 import com.bank.account.infrastructure.persistence.entity.TransactionEntity;
 import com.bank.account.infrastructure.persistence.mapper.TransactionPersistenceMapper;
 import com.bank.account.infrastructure.persistence.repository.JpaTransactionRepository;

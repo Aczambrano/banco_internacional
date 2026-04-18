@@ -5,8 +5,8 @@ import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.enums.TransactionType;
-import com.bank.account.domain.repository.AccountRepository;
-import com.bank.account.domain.repository.TransactionRepository;
+import com.bank.account.domain.port.output.AccountRepository;
+import com.bank.account.domain.port.output.TransactionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,15 +1,14 @@
 package com.bank.account.application.usecase;
 
 
-import com.bank.account.application.dto.response.TransactionResponse;
 import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.Transfer;
 import com.bank.account.domain.model.enums.TransactionType;
-import com.bank.account.domain.repository.AccountRepository;
-import com.bank.account.domain.repository.TransactionRepository;
-import com.bank.account.domain.repository.TransferRepository;
+import com.bank.account.domain.port.output.AccountRepository;
+import com.bank.account.domain.port.output.TransactionRepository;
+import com.bank.account.domain.port.output.TransferRepository;
 import com.bank.account.domain.service.AccountDomainService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

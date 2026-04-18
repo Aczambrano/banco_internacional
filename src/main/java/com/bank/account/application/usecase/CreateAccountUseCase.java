@@ -5,8 +5,8 @@ import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.enums.AccountStatus;
 import com.bank.account.domain.model.enums.AccountType;
 import com.bank.account.domain.model.enums.CurrencyCode;
-import com.bank.account.domain.repository.AccountRepository;
-import com.bank.account.domain.service.ClientPort;
+import com.bank.account.domain.port.output.AccountRepository;
+import com.bank.account.domain.port.output.ClientPort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

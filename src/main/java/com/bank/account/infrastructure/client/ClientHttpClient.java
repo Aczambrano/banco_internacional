@@ -1,7 +1,7 @@
 package com.bank.account.infrastructure.client;
 
 import com.bank.account.domain.exception.ClientNotFoundException;
-import com.bank.account.domain.service.ClientPort;
+import com.bank.account.domain.port.output.ClientPort;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.HttpClientErrorException;
