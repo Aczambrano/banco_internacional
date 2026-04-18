@@ -9,9 +9,11 @@ import com.bank.account.domain.repository.AccountRepository;
 import com.bank.account.domain.repository.TransactionRepository;
 import com.bank.account.domain.repository.TransferRepository;
 import com.bank.account.domain.service.AccountDomainService;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@Service
 public class TransferUseCase {
 
     private final AccountRepository accountRepository;

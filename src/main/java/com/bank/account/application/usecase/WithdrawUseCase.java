@@ -6,9 +6,11 @@ import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.enums.TransactionType;
 import com.bank.account.domain.repository.AccountRepository;
 import com.bank.account.domain.repository.TransactionRepository;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@Service
 public class WithdrawUseCase {
 
     private final AccountRepository accountRepository;

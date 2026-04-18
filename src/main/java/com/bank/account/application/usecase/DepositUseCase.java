@@ -1,11 +1,16 @@
 package com.bank.account.application.usecase;
 
+import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.enums.TransactionType;
 import com.bank.account.domain.repository.AccountRepository;
 import com.bank.account.domain.repository.TransactionRepository;
+import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
+@Service
 public class DepositUseCase {
 
     private final AccountRepository accountRepository;
@@ -17,10 +22,10 @@ public class DepositUseCase {
         this.transactionRepository = transactionRepository;
     }
 
-    public void execute(Long accountId, java.math.BigDecimal amount) {
+    public void execute(Long accountId, BigDecimal amount) {
 
         Account account = accountRepository.findByIdForUpdate(accountId)
-                .orElseThrow(() -> new RuntimeException("Account not found"));
+                .orElseThrow(() -> new AccountNotFoundException(accountId));
 
         account.deposit(amount);
 

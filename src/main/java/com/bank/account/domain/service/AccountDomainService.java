@@ -3,9 +3,11 @@ package com.bank.account.domain.service;
 import com.bank.account.domain.exception.AccountNotActiveException;
 import com.bank.account.domain.exception.InsufficientFundsException;
 import com.bank.account.domain.model.Account;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@Service
 public class AccountDomainService {
 
     public void validateDebit(Account account, BigDecimal amount) {

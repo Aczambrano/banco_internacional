@@ -3,7 +3,9 @@ package com.bank.account.application.usecase;
 import com.bank.account.domain.exception.AccountNotFoundException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.repository.AccountRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GetAccountUseCase {
 
     private final AccountRepository accountRepository;

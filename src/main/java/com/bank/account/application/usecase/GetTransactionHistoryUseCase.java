@@ -2,9 +2,11 @@ package com.bank.account.application.usecase;
 
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.repository.TransactionRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GetTransactionHistoryUseCase {
 
     private final TransactionRepository transactionRepository;
