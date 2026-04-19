@@ -1,0 +1,813 @@
+{
+  "info": {
+    "_postman_id": "8495032e-825d-4428-80be-5cc1a5e2e74a",
+    "name": "Bank BI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43665130",
+    "_collection_link": "https://go.postman.co/collection/43665130-8495032e-825d-4428-80be-5cc1a5e2e74a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "account",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"clientId\": 1,\r\n  \"type\": \"SAVINGS\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8081/accounts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "accounts"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 CHECKING",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"clientId\": 1,\r\n  \"type\": \"CHECKING\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/accounts",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 18 Apr 2026 04:55:43 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": null,\n    \"accountNumber\": \"73aed6f8-8d38-4a3a-bcd9-1352299fb1bc\",\n    \"clientId\": 1,\n    \"type\": \"CHECKING\",\n    \"balance\": 0,\n    \"status\": \"ACTIVE\"\n}"
+            },
+            {
+              "name": "201 SAVINGS",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"clientId\": 1,\r\n  \"type\": \"SAVINGS\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/accounts",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 18 Apr 2026 04:56:01 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": null,\n    \"accountNumber\": \"050ee306-5ed2-44a0-8496-43b7399d42ab\",\n    \"clientId\": 1,\n    \"type\": \"SAVINGS\",\n    \"balance\": 0,\n    \"status\": \"ACTIVE\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Account",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/accounts/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "accounts",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8081/accounts/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "accounts",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 19 Apr 2026 16:41:52 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"accountNumber\": \"e0727892-40c0-4120-a4d9-da1fbac2cab1\",\n    \"clientId\": 1,\n    \"type\": \"SAVINGS\",\n    \"balance\": 1500,\n    \"status\": \"BLOCKED\",\n    \"currency\": \"USD\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "DEPOSIT",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"amount\": 1500.0,\r\n  \"reference\" : \"0\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8081/accounts/1/deposit",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "accounts",
+                "1",
+                "deposit"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "403 INACTIVE",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"amount\": 1500.0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/accounts/1/deposit",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "accounts",
+                    "1",
+                    "deposit"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 19 Apr 2026 16:43:01 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 403,\n    \"error\": \"Forbidden\",\n    \"message\": \"Account is not active\",\n    \"timestamp\": \"2026-04-19T16:43:01.30147498\"\n}"
+            },
+            {
+              "name": "200 SUCCESS",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"amount\": 1500.0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/accounts/2/deposit",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "accounts",
+                    "2",
+                    "deposit"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 19 Apr 2026 16:43:32 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 8,\n    \"accountId\": 2,\n    \"amount\": 1500,\n    \"type\": \"DEPOSIT\",\n    \"status\": \"SUCCESS\",\n    \"reference\": \"0fa48328-1ab1-427a-a322-d851dc4367e4\",\n    \"createdAt\": \"2026-04-19T16:43:32.255607292\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "WITHDRAW",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"amount\": 10,\r\n  \"reference\" : \"014\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8081/accounts/2/withdraw",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "accounts",
+                "2",
+                "withdraw"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "409 INSUFFICIENT FOUNDS",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"amount\": 1500\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/accounts/2/withdraw",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "accounts",
+                    "2",
+                    "withdraw"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 18 Apr 2026 19:37:42 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 409,\n    \"error\": \"Conflict\",\n    \"message\": \"Insufficient funds\",\n    \"timestamp\": \"2026-04-18T14:37:42.6044743\"\n}"
+            },
+            {
+              "name": "200 SUCCESS",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"amount\": 10\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/accounts/2/withdraw",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "accounts",
+                    "2",
+                    "withdraw"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 19 Apr 2026 16:44:25 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 9,\n    \"accountId\": 2,\n    \"amount\": 10,\n    \"type\": \"WITHDRAWAL\",\n    \"status\": \"SUCCESS\",\n    \"reference\": \"f25c0d01-9b17-4c1a-a4df-9ecb7772852c\",\n    \"createdAt\": \"2026-04-19T16:44:25.710448199\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Transaction",
+      "item": [
+        {
+          "name": "transfer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"sourceAccountId\": 2,\r\n  \"targetAccountId\": 1,\r\n  \"amount\": 100.00,\r\n  \"reference\" : \"01242\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8081/transactions/transfer",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "transactions",
+                "transfer"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 SUCCESS",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"sourceAccountId\": 2,\r\n  \"targetAccountId\": 3,\r\n  \"amount\": 100.00\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/transactions/transfer",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "transactions",
+                    "transfer"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 19 Apr 2026 16:44:55 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 3,\n    \"sourceAccountId\": 2,\n    \"targetAccountId\": 3,\n    \"amount\": 100,\n    \"status\": \"SUCCESS\",\n    \"reference\": \"703739df-7be0-4a16-adb7-4c928a50fb8a\",\n    \"createdAt\": \"2026-04-19T16:44:55.429511937\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "get Transactions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/transactions/account/2?page=0&size=2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "transactions",
+                "account",
+                "2"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8081/transactions/account/2?page=2&size=5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "transactions",
+                    "account",
+                    "2"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "2"
+                    },
+                    {
+                      "key": "size",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 18 Apr 2026 16:31:31 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 14,\n        \"accountId\": 2,\n        \"amount\": 1500,\n        \"type\": \"DEPOSIT\",\n        \"status\": \"SUCCESS\",\n        \"reference\": \"23e05c5f-de49-4f99-ba53-5dcda5142b44\",\n        \"createdAt\": \"2026-04-18T11:31:31.0775474\"\n    },\n    {\n        \"id\": 13,\n        \"accountId\": 2,\n        \"amount\": 1500,\n        \"type\": \"DEPOSIT\",\n        \"status\": \"SUCCESS\",\n        \"reference\": \"b62d93a0-3722-438d-a7ec-2e28691c9beb\",\n        \"createdAt\": \"2026-04-18T11:31:31.0775474\"\n    },\n    {\n        \"id\": 12,\n        \"accountId\": 2,\n        \"amount\": 1500,\n        \"type\": \"DEPOSIT\",\n        \"status\": \"SUCCESS\",\n        \"reference\": \"dc7cda5d-b4ff-4056-84cb-3fa6f4af5ebe\",\n        \"createdAt\": \"2026-04-18T11:31:31.0775474\"\n    },\n    {\n        \"id\": 11,\n        \"accountId\": 2,\n        \"amount\": 1500,\n        \"type\": \"DEPOSIT\",\n        \"status\": \"SUCCESS\",\n        \"reference\": \"cc4ce03b-1e75-46f5-b8bd-abf85de3120d\",\n        \"createdAt\": \"2026-04-18T11:31:31.0775474\"\n    },\n    {\n        \"id\": 10,\n        \"accountId\": 2,\n        \"amount\": 1500,\n        \"type\": \"DEPOSIT\",\n        \"status\": \"SUCCESS\",\n        \"reference\": \"4f471d6f-9bc1-4c09-a396-de3d639235c5\",\n        \"createdAt\": \"2026-04-18T11:31:31.0775474\"\n    }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "customer",
+      "item": [
+        {
+          "name": "customer",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/clients/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "clients",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8089/clients/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8089",
+                  "path": [
+                    "clients",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "76dd6860-8832-445b-a72c-7008f87d4e56"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"id\":1,\"name\":\"Anderson Zambrano\"}"
+            },
+            {
+              "name": "CLIENT NOT FOUND",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8089/clients/2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8089",
+                  "path": [
+                    "clients",
+                    "2"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Matched-Stub-Id",
+                  "value": "27ae55a2-784f-43d8-97ec-d3635f05f41a"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "Client not found"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -19,14 +19,15 @@ public class Transfer {
     public Transfer(Long id,
                     Long sourceAccountId,
                     Long targetAccountId,
-                    BigDecimal amount) {
+                    BigDecimal amount,
+                    String reference) {
 
         this.id = id;
         this.sourceAccountId = sourceAccountId;
         this.targetAccountId = targetAccountId;
         this.amount = amount;
         this.status = TransactionStatus.PENDING;
-        this.reference = UUID.randomUUID().toString();
+        this.reference = reference;
         this.createdAt = LocalDateTime.now();
     }
 

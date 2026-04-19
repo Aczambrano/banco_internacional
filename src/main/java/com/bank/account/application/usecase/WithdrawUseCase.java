@@ -3,6 +3,7 @@ package com.bank.account.application.usecase;
 
 import com.bank.account.application.port.in.WithdrawPort;
 import com.bank.account.domain.exception.AccountNotFoundException;
+import com.bank.account.domain.exception.DuplicateTransactionException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.enums.TransactionType;
@@ -27,7 +28,13 @@ public class WithdrawUseCase implements WithdrawPort {
 
     @Override
     @Transactional
-    public Transaction execute(Long accountId, BigDecimal amount) {
+    public Transaction execute(Long accountId, BigDecimal amount, String reference) {
+
+        var existingTransaction = transactionRepository.findByReference(reference);
+
+        if (!existingTransaction.isEmpty()) {
+            throw new DuplicateTransactionException(reference);
+        }
 
         Account account = accountRepository.findByIdForUpdate(accountId)
                 .orElseThrow(() -> new AccountNotFoundException(accountId));
@@ -38,7 +45,8 @@ public class WithdrawUseCase implements WithdrawPort {
                 null,
                 accountId,
                 amount,
-                TransactionType.WITHDRAWAL
+                TransactionType.WITHDRAWAL,
+                reference
         );
 
         tx.markAsSuccess();

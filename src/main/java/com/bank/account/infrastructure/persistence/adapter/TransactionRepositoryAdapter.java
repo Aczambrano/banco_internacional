@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -26,8 +27,11 @@ public class TransactionRepositoryAdapter implements TransactionRepository {
     }
 
     @Override
-    public boolean existsByReference(String reference) {
-        return jpa.existsByReference(reference);
+    public List<Transaction> findByReference(String reference) {
+        return jpa.findByReference(reference)
+                .stream()
+                .map(this::toDomain)
+                .toList();
     }
 
     @Override
@@ -45,7 +49,8 @@ public class TransactionRepositoryAdapter implements TransactionRepository {
                 e.getId(),
                 e.getAccountId(),
                 e.getAmount(),
-                e.getType()
+                e.getType(),
+                e.getReference()
         );
 
         if (e.getStatus() != null) {

@@ -16,7 +16,8 @@ class TransferTest {
                 1L,
                 100L,
                 200L,
-                new BigDecimal("150.00")
+                new BigDecimal("150.00"),
+                "123"
         );
 
         assertEquals(1L, transfer.getId());
@@ -76,7 +77,8 @@ class TransferTest {
                 10L,
                 111L,
                 222L,
-                new BigDecimal("75.00")
+                new BigDecimal("75.00"),
+                "123"
         );
     }
 }

@@ -64,7 +64,7 @@ public class AccountController {
                                                        @Valid @RequestBody DepositRequest request) {
         log.info("Deposit request received: {}", request);
 
-        var transaction = depositUseCase.execute(id, request.amount());
+        var transaction = depositUseCase.execute(id, request.amount(), request.reference());
 
         return ResponseEntity.ok(TransactionMapper.toResponse(transaction));
     }
@@ -73,7 +73,7 @@ public class AccountController {
     public ResponseEntity<TransactionResponse> withdraw(@PathVariable Long id,
                                          @Valid @RequestBody WithdrawRequest request) {
 
-        var transaction = withdrawUseCase.execute(id, request.amount());
+        var transaction = withdrawUseCase.execute(id, request.amount(), request.reference());
 
         return ResponseEntity.ok(TransactionMapper.toResponse(transaction));
     }

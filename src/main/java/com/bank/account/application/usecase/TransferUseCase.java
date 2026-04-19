@@ -3,6 +3,7 @@ package com.bank.account.application.usecase;
 
 import com.bank.account.application.port.in.TransferPort;
 import com.bank.account.domain.exception.AccountNotFoundException;
+import com.bank.account.domain.exception.DuplicateTransactionException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.Transfer;
@@ -36,7 +37,13 @@ public class TransferUseCase implements TransferPort {
 
     @Override
     @Transactional
-    public Transfer execute(Long sourceId, Long targetId, BigDecimal amount) {
+    public Transfer execute(Long sourceId, Long targetId, BigDecimal amount, String reference) {
+
+        var existingTransaction = transactionRepository.findByReference(reference);
+
+        if (!existingTransaction.isEmpty()) {
+            throw new DuplicateTransactionException(reference);
+        }
 
         Account source = accountRepository.findByIdForUpdate(sourceId)
                 .orElseThrow(() -> new AccountNotFoundException(sourceId));
@@ -46,10 +53,10 @@ public class TransferUseCase implements TransferPort {
 
         domainService.transfer(source, target, amount);
 
-        Transfer transfer = new Transfer(null, sourceId, targetId, amount);
+        Transfer transfer = new Transfer(null, sourceId, targetId, amount,reference);
 
-        Transaction debit = new Transaction(null, sourceId, amount, TransactionType.TRANSFER_OUT);
-        Transaction credit = new Transaction(null, targetId, amount, TransactionType.TRANSFER_IN);
+        Transaction debit = new Transaction(null, sourceId, amount, TransactionType.TRANSFER_OUT,reference);
+        Transaction credit = new Transaction(null, targetId, amount, TransactionType.TRANSFER_IN,reference);
 
         debit.markAsSuccess();
         credit.markAsSuccess();

@@ -48,6 +48,7 @@ class TransferUseCaseTest {
         Long sourceId = 1L;
         Long targetId = 2L;
         BigDecimal amount = new BigDecimal("100.00");
+        String reference = "123";
 
         Account source = activeAccount("200.00");
         Account target = activeAccount("50.00");
@@ -63,7 +64,7 @@ class TransferUseCaseTest {
 
         ArgumentCaptor<Transaction> txCaptor = ArgumentCaptor.forClass(Transaction.class);
 
-        Transfer result = useCase.execute(sourceId, targetId, amount);
+        Transfer result = useCase.execute(sourceId, targetId, amount, reference);
 
         verify(accountRepository).findByIdForUpdate(sourceId);
         verify(accountRepository).findByIdForUpdate(targetId);
@@ -102,7 +103,7 @@ class TransferUseCaseTest {
                 .thenReturn(Optional.empty());
 
         assertThrows(AccountNotFoundException.class,
-                () -> useCase.execute(sourceId, 2L, new BigDecimal("50.00")));
+                () -> useCase.execute(sourceId, 2L, new BigDecimal("50.00"), "123"));
 
         verify(domainService, never()).transfer(any(), any(), any());
         verify(transactionRepository, never()).save(any());
@@ -123,7 +124,7 @@ class TransferUseCaseTest {
                 .thenReturn(Optional.empty());
 
         assertThrows(AccountNotFoundException.class,
-                () -> useCase.execute(sourceId, targetId, new BigDecimal("50.00")));
+                () -> useCase.execute(sourceId, targetId, new BigDecimal("50.00"), "123"));
 
         verify(domainService, never()).transfer(any(), any(), any());
         verify(transactionRepository, never()).save(any());

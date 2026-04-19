@@ -35,7 +35,8 @@ public class TransactionController {
         var transfer = transferUseCase.execute(
                 request.sourceAccountId(),
                 request.targetAccountId(),
-                request.amount()
+                request.amount(),
+                request.reference()
         );
 
         return ResponseEntity.ok(TransferMapper.fromTransfer(transfer));

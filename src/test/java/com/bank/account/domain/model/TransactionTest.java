@@ -17,7 +17,8 @@ class TransactionTest {
                 1L,
                 100L,
                 new BigDecimal("50.00"),
-                TransactionType.DEPOSIT
+                TransactionType.DEPOSIT,
+                 "123"
         );
 
         assertEquals(1L, tx.getId());
@@ -85,7 +86,8 @@ class TransactionTest {
                 10L,
                 999L,
                 new BigDecimal("25.00"),
-                TransactionType.DEPOSIT
+                TransactionType.DEPOSIT,
+                "123"
         );
     }
 }

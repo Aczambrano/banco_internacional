@@ -20,14 +20,15 @@ public class Transaction {
     public Transaction(Long id,
                        Long accountId,
                        BigDecimal amount,
-                       TransactionType type) {
+                       TransactionType type,
+                       String reference) {
 
         this.id = id;
         this.accountId = accountId;
         this.amount = amount;
         this.type = type;
         this.status = TransactionStatus.PENDING;
-        this.reference = UUID.randomUUID().toString();
+        this.reference = reference;
         this.createdAt = LocalDateTime.now();
     }
 

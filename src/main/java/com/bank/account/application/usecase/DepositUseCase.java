@@ -2,6 +2,7 @@ package com.bank.account.application.usecase;
 
 import com.bank.account.application.port.in.DepositPort;
 import com.bank.account.domain.exception.AccountNotFoundException;
+import com.bank.account.domain.exception.DuplicateTransactionException;
 import com.bank.account.domain.model.Account;
 import com.bank.account.domain.model.Transaction;
 import com.bank.account.domain.model.enums.TransactionType;
@@ -26,7 +27,13 @@ public class DepositUseCase implements DepositPort {
 
     @Override
     @Transactional
-    public Transaction execute(Long accountId, BigDecimal amount) {
+    public Transaction execute(Long accountId, BigDecimal amount, String reference) {
+
+        var existingTransaction = transactionRepository.findByReference(reference);
+
+        if (!existingTransaction.isEmpty()) {
+            throw new DuplicateTransactionException(reference);
+        }
 
         Account account = accountRepository.findByIdForUpdate(accountId)
                 .orElseThrow(() -> new AccountNotFoundException(accountId));
@@ -37,13 +44,13 @@ public class DepositUseCase implements DepositPort {
                 null,
                 accountId,
                 amount,
-                TransactionType.DEPOSIT
+                TransactionType.DEPOSIT,
+                reference
         );
 
         tx.markAsSuccess();
 
         accountRepository.save(account);
-
 
         return transactionRepository.save(tx);
     }

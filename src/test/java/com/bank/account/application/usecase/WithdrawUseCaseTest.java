@@ -39,6 +39,7 @@ class WithdrawUseCaseTest {
     void shouldWithdrawSuccessfully() {
         Long accountId = 1L;
         BigDecimal amount = new BigDecimal("50.00");
+        String reference = "123";
 
         Account account = activeAccount("200.00");
 
@@ -53,7 +54,7 @@ class WithdrawUseCaseTest {
 
         ArgumentCaptor<Transaction> txCaptor = ArgumentCaptor.forClass(Transaction.class);
 
-        Transaction result = useCase.execute(accountId, amount);
+        Transaction result = useCase.execute(accountId, amount, reference);
 
         verify(accountRepository).findByIdForUpdate(accountId);
 
@@ -83,7 +84,7 @@ class WithdrawUseCaseTest {
                 .thenReturn(Optional.empty());
 
         assertThrows(AccountNotFoundException.class,
-                () -> useCase.execute(accountId, new BigDecimal("50.00")));
+                () -> useCase.execute(accountId, new BigDecimal("50.00"), "123"));
 
         verify(accountRepository, never()).save(any());
         verify(transactionRepository, never()).save(any());
@@ -99,7 +100,7 @@ class WithdrawUseCaseTest {
                 .thenReturn(Optional.of(account));
 
         assertThrows(InsufficientFundsException.class,
-                () -> useCase.execute(accountId, new BigDecimal("100.00")));
+                () -> useCase.execute(accountId, new BigDecimal("100.00"), "123"));
 
         verify(accountRepository, never()).save(any());
         verify(transactionRepository, never()).save(any());
